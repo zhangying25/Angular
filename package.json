@@ -1,0 +1,25 @@
+{
+  "name": "angular",
+  "version": "1.0.0",
+  "description": "Angular JS",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangying25/Angular.git"
+  },
+  "author": "Ying Zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangying25/Angular/issues"
+  },
+  "homepage": "https://github.com/zhangying25/Angular#readme",
+  "devDependencies": {
+    "@angular/cli": "^1.4.9",
+    "lite-server": "^2.3.0"
+  }
+}
