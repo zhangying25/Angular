@@ -44,7 +44,19 @@
     		</p>
     	</md-list-item>
 
-      <form novalidate [formGroup]="commentForm" ngSubmit="onSubmit()">
+      <md-list-item *ngIf="commentForm.valid">
+        <p md-line>
+          <span>{{commentForm.get('comment').value}}</span>
+        </p>
+        <p md-line>
+          <span>{{commentForm.get('rating').value}} Stars</span>
+        </p>
+        <p md-line>
+          <span>-- {{commentForm.get('author').value}}</span>
+        </p>
+      </md-list-item>
+
+      <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
         <p>
           <md-input-container dividerColor="{{(formErrors.author) ? 'warn' : 'primary'}}">
             <input mdInput formControlName='author' placeholder="Name" type="text" required>
@@ -56,7 +68,7 @@
           </md-input-container>
         </p>
         <p>
-          <md-slider min="1" max="5" step="1" tickIntervals="1" value="5"></md-slider>
+          <md-slider flex md-discrete formControlName='rating' min="1" max="5" step="1" tickIntervals="1" value="5"></md-slider>
         </p>
         <p>
           <md-input-container dividerColor="{{(formErrors.comment) ? 'warn' : 'primary'}}">
