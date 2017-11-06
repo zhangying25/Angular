@@ -43,6 +43,22 @@
     			<span>-- {{comment.author}} {{comment.date | date}}</span>
     		</p>
     	</md-list-item>
+
+      <form novalidate [formGroup]="commentForm" ngSubmit="onSubmit()">
+        <p>
+          <md-input-container>
+            <input mdInput formControlName='author' placeholder="Name" type="text" required>
+          </md-input-container>
+        </p>
+        <p>
+          <md-slider min="1" max="5" step="1" tickIntervals="1" value="5"></md-slider>
+        </p>
+        <p>
+          <md-input-container>
+            <textarea mdInput formControlName="comment" placeholder="Your Comment" rows=10 required></textarea>
+          </md-input-container>
+        </p>
+      </form>
     </md-list>
   </div>
 
