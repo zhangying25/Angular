@@ -3,34 +3,34 @@
 	fxLayoutGap="10px" fxLayoutGap.xs="0">
 
 	<div fxFlex="50" *ngIf='dish'>
-
-		<md-card> <md-card-header> <md-card-title>
-		<h3>{{dish.name | uppercase}}</h3>
-		</md-card-title> </md-card-header> <img md-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}> <md-card-content>
-		<p>
-			<b>{{dish.description}}</b>
-		</p>
-		</md-card-content> <md-card-actions>
-		<button md-button [routerLink]="['/dishdetail', prev]">
-			<span class="fa fa-chevron-left fa-lg"></span>
-		</button>
-		<button md-button (click)="goBack()">BACK</button>
-		<button md-button>LIKE</button>
-		<button md-button>SHARE</button>
-		<span class="flex-spacer"></span>
-		<button md-button [routerLink]="['/dishdetail', next]">
-			<span class="fa fa-chevron-right fa-lg"></span>
-		</button>
-		</md-card-actions> <!-- 	 <md-card-actions>
-		 
-         <button md-button (click)="goBack()">BACK</button>
-		<button md-button><b>LIKE</b></button>
-		<button md-button><b>SHARE</b></button>
-		</md-card-actions>  --> </md-card>
+		<md-card> 
+      <md-card-header> 
+        <md-card-title>
+    		  <h3>{{dish.name | uppercase}}</h3>
+    		</md-card-title> 
+      </md-card-header> 
+      <img md-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}> 
+      <md-card-content>
+    		<p>
+    			<b>{{dish.description}}</b>
+    		</p>
+    	</md-card-content> 
+      <md-card-actions>
+    		<button md-button [routerLink]="['/dishdetail', prev]">
+    			<span class="fa fa-chevron-left fa-lg"></span>
+    		</button>
+    		<button md-button (click)="goBack()">BACK</button>
+    		<button md-button>LIKE</button>
+    		<button md-button>SHARE</button>
+    		<span class="flex-spacer"></span>
+    		<button md-button [routerLink]="['/dishdetail', next]">
+    			<span class="fa fa-chevron-right fa-lg"></span>
+    		</button>
+    	</md-card-actions>
+    </md-card>
 	</div>
 
 	<div fxFlex="50" *ngIf="dish">
-
 		<div>
 			<header>
 				<h2>Comments</h2>
@@ -52,40 +52,38 @@
 				</md-list-item> </md-list>
 			</div>
 			<div class = "flex-spacer">
-			
-    <form novalidate [formGroup]="commentsForm" (ngSubmit)="onSubmit()">
-          
+        <form novalidate [formGroup]="commentsForm" (ngSubmit)="onSubmit()">
           <p>
-          
-            <md-input-container 
-             dividerColor="{{(formErrors.Name) ? 'warn' : 'primary'}}">
+            <md-input-container dividerColor="{{(formErrors.Name) ? 'warn' : 'primary'}}">
               <input mdInput formControlName="Name" placeholder="Name" type="text" required>
               <md-hint>
-                <span [hidden]="!(formErrors.Name)">
-                  {{formErrors.Name}}</span>
+                <span [hidden]="!(formErrors.Name)">{{formErrors.Name}}</span>
               </md-hint>
             </md-input-container>
           </p>
-          
           <p>
-        <md-slider max = "5" min= "0" step = "1" formControlName="stars" thumbLabel tickInterval="1"></md-slider>
-      </p>
+            <md-slider max = "5" min= "0" step = "1" formControlName="stars" thumbLabel tickInterval="1"></md-slider>
+          </p>
           <p>
             <md-input-container class="full-width"
              dividerColor="{{(formErrors.comments) ? 'warn' : 'primary'}}">
               <input mdInput formControlName="comments" placeholder="Comments" type="text" required>
               <md-hint>
-                <span [hidden]="!(formErrors.comments)">
-                  {{formErrors.comments}}</span>
+                <span [hidden]="!(formErrors.comments)">{{formErrors.comments}}</span>
               </md-hint>
             </md-input-container>
           </p>
-     <button type="submit" md-button class="background-primary text-floral-white" [disabled]="commentsForm.invalid">Submit</button>
+          <button type="submit" md-button class="background-primary text-floral-white" [disabled]="commentsForm.invalid">Submit</button>
         </form>
- 
-
-			
 			</div>
 		</div>
 	</div>
+  <div [hidden] = "dish || errMsg">
+    <md-spinner></md-spinner><h4>Loading ... Please Wait</h4>
+  </div>
+  <div *ngIf="errMsg">
+    <h2>Error</h2>
+    <h4>{{errMsg}}</h4>
+  </div>
+
 </div>
