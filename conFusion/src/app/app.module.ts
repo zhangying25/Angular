@@ -27,6 +27,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { baseURL } from './shared/baseurl';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
 
 @NgModule({
   declarations: [
@@ -45,13 +47,14 @@ import { ProcessHttpmsgService } from './services/process-httpmsg.service';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    MaterialModule,
     FlexLayoutModule,
+    MaterialModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
-  providers: [ DishService, 
-    PromotionService, 
+  providers: [ DishService,
+    PromotionService,
     LeaderService,
     { provide: 'BaseURL', useValue: baseURL },
     ProcessHttpmsgService ],
