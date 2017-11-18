@@ -3,18 +3,18 @@
 	fxLayoutGap="10px" fxLayoutGap.xs="0">
 
 	<div fxFlex="50" *ngIf='dish'>
-		<md-card> 
-      <md-card-header> 
+		<md-card>
+      <md-card-header>
         <md-card-title>
     		  <h3>{{dish.name | uppercase}}</h3>
-    		</md-card-title> 
-      </md-card-header> 
-      <img md-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}> 
+    		</md-card-title>
+      </md-card-header>
+      <img md-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}>
       <md-card-content>
     		<p>
     			<b>{{dish.description}}</b>
     		</p>
-    	</md-card-content> 
+    	</md-card-content>
       <md-card-actions>
     		<button md-button [routerLink]="['/dishdetail', prev]">
     			<span class="fa fa-chevron-left fa-lg"></span>
@@ -55,19 +55,19 @@
         <form novalidate [formGroup]="commentsForm" (ngSubmit)="onSubmit()">
           <p>
             <md-input-container dividerColor="{{(formErrors.Name) ? 'warn' : 'primary'}}">
-              <input mdInput formControlName="Name" placeholder="Name" type="text" required>
+              <input mdInput formControlName="author" placeholder="Name" type="text" required>
               <md-hint>
                 <span [hidden]="!(formErrors.Name)">{{formErrors.Name}}</span>
               </md-hint>
             </md-input-container>
           </p>
           <p>
-            <md-slider max = "5" min= "0" step = "1" formControlName="stars" thumbLabel tickInterval="1"></md-slider>
+            <md-slider max = "5" min= "0" step = "1" formControlName="rating" thumbLabel tickInterval="1"></md-slider>
           </p>
           <p>
             <md-input-container class="full-width"
              dividerColor="{{(formErrors.comments) ? 'warn' : 'primary'}}">
-              <input mdInput formControlName="comments" placeholder="Comments" type="text" required>
+              <input mdInput formControlName="comment" placeholder="Comments" type="text" required>
               <md-hint>
                 <span [hidden]="!(formErrors.comments)">{{formErrors.comments}}</span>
               </md-hint>

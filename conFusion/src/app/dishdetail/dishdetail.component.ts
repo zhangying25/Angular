@@ -19,9 +19,10 @@ import 'rxjs/add/operator/switchMap';
 export class DishdetailComponent implements OnInit {
 
   commentsForm: FormGroup;
-  comments: Comment;
+  comment: Comment;
 
   dish: Dish;
+  dishcopy = null;
   dishIds: number[];
   prev: number;
   next: number;
@@ -58,7 +59,8 @@ export class DishdetailComponent implements OnInit {
       .subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => {this.dish = dish; this.setPrevNext(dish.id); }, errMsg => this.errMsg = <any>errMsg);
+      .subscribe(dish => {this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
+        errMsg => { this.dish = null; this.errMsg = <any>errMsg; });
   }
 
   setPrevNext(dishId: number) {
@@ -73,9 +75,9 @@ export class DishdetailComponent implements OnInit {
 
   createForm(): void {
     this.commentsForm = this.fb.group({
-      Name: ['', [Validators.required, Validators.minLength(2)]],
-      comments: ['', [Validators.required, Validators.minLength(2)]],
-      stars: [5],
+      author: ['', [Validators.required, Validators.minLength(2)]],
+      comment: ['', [Validators.required, Validators.minLength(2)]],
+      rating: [5],
       date: ''
     });
 
@@ -102,16 +104,15 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
-    let date = new Date();
-    this.commentsForm.value.date = date.toISOString();
-    this.comments = this.commentsForm.value;
-    console.log(this.comments);
-    this.dish.comments.push(this.comments);
+    this.comment = this.commentsForm.value;
+    this.comment.date = new Date().toISOString();
+    console.log(this.comment);
+    this.dishcopy.comments.push(this.comment);
+    this.dishcopy.save().subscribe( dish => { this.dish = dish; console.log(this.dish); });
     this.commentsForm.reset({
-      Name: '',
-      comments: '',
-      stars: 5,
-      date: ''
+      author: '',
+      comment: '',
+      rating: 5
     });
   }
 
