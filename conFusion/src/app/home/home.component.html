@@ -21,7 +21,7 @@
   <div [hidden]="dish || dishErrMsg">
       <md-spinner></md-spinner> <h4>Loading... Please wait</h4>
   </div>
-  <div *ngIf="errMsg">
+  <div *ngIf="dishErrMsg">
       <h2>Error</h2>
       <h4>{{dishErrMsg}}</h4>
   </div>
