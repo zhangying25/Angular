@@ -67,7 +67,7 @@
           <p>
             <md-input-container class="full-width"
              dividerColor="{{(formErrors.comments) ? 'warn' : 'primary'}}">
-              <input mdInput formControlName="comment" placeholder="Comments" type="text" required>
+              <input mdInput formControlName="comment" placeholder="Comments" type="textarea" required>
               <md-hint>
                 <span [hidden]="!(formErrors.comments)">{{formErrors.comments}}</span>
               </md-hint>
