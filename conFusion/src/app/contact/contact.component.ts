@@ -100,20 +100,18 @@ export class ContactComponent implements OnInit {
       this.submitting = false;
       this.submittedFeedback = feedback;
       console.log(feedback);
-      this.submittedFeedback = undefined;
-      setTimeout(function(){
-        console.log(this.submittedFeedback);
+      setTimeout(() => {
+        this.submittedFeedback = undefined;
+        this.feedbackForm.reset({
+          firstname: '',
+          lastname: '',
+          telnum: '',
+          email: '',
+          agree: false,
+          contacttype: 'None',
+          message: ''
+        });
       }, 5000);
     });
-
-  	this.feedbackForm.reset({
-  		firstname: '',
-  		lastname: '',
-  		telnum: '',
-  		email: '',
-  		agree: false,
-  		contacttype: 'None',
-  		message: ''
-  	});
   }
 }
