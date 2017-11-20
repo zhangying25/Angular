@@ -12,8 +12,8 @@ export class FeedbackService {
 
   constructor(private restangular: Restangular, private processHttpMsgService: ProcessHttpmsgService) { }
 
-  submitFeedback(feedback: Feedback) {
-      this.restangular.all('feedback').post(feedback);
+  submitFeedback(feedback: Feedback): Observable<Feedback> {
+      return this.restangular.all('feedback').post(feedback);
   }
 
 }
